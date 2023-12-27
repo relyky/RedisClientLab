@@ -39,7 +39,7 @@ namespace RedisClientLab
       //  AllowAdmin = true, // 啟動管理員模式
       //});
 
-      ////## for Redis，不需帳密就可連線。
+      //## for Redis，不需帳密就可連線。
       using var redis = ConnectionMultiplexer.Connect("localhost:6379", options => {
         options.AllowAdmin = true; // 啟動管理員模式。才可抓取 keyspace_hits, keyspace_misses 狀態值。
       });
@@ -134,7 +134,7 @@ namespace RedisClientLab
       db.GeoAdd("mygeokey", 131.11, 52.22, "某乙");
 
       var distance = db.GeoDistance("mygeokey", "某甲", "某乙");
-      Console.WriteLine($"{"某甲"}與{"某乙"}的距離有{distance}。");
+      Console.WriteLine($"{"某甲"}與{"某乙"}的距離有{distance}公尺。");
 
       Console.WriteLine("§§ 計算 hit rate (需啟動 admin 模式) ----------------");
 
@@ -148,8 +148,8 @@ namespace RedisClientLab
       long misses = long.Parse(statsInfo["keyspace_misses"]);
       long total = hits + misses;
 
-      double hitRate = (double)hits * 100.0 / (double)(total);
-      Console.WriteLine($"Hit Rate → {hits} / {total} = {hitRate:00}%");
+      double hitRate = (double)hits * 100.0d / (double)(total);
+      Console.WriteLine($"Hit Rate → {hits} / {total} = {hitRate:#.00}%");
 
       //# Dump reids server all info;
       Console.WriteLine($"Dump reids server all info -----------------------------");
