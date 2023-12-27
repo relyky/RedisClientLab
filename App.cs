@@ -154,8 +154,8 @@ namespace RedisClientLab
       //# Dump reids server all info;
       Console.WriteLine($"Dump reids server all info -----------------------------");
 
-      var stssInfos = redis.GetServer("localhost:6379").Info();
-      foreach (var info in stssInfos)
+      var allInfos = redis.GetServer("localhost:6379").Info();
+      foreach (var info in allInfos)
         foreach (var prop in info)
           Console.WriteLine($"Dump redis info: {info.Key}: {prop.Key} => {prop.Value}");
 
